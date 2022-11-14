@@ -1,0 +1,77 @@
+20221114
+awsチュートリアルでコンテナのビルドを試してみる
+https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/userguide/create-container-image.html
+gcpでのコンテナのビルドの感覚があるうちにコンテナの知見を確立しておく
+後で忙しい時にコンテナをビルドする時に振返れるのが目的
+
+20221114
+ECRコンソールで作成したレポジトリ
+099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114
+
+認証トークンを取得し、レジストリに対して Docker クライアントを認証します。
+PowerShell 向けの AWS Tools を使用する
+上段：Windows用
+下段：Mac用
+(Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
+
+以下のコマンドを使用して、Docker イメージを構築します。一から Docker ファイルを構築する方法については、「こちらをクリック 」の手順を参照してください。
+既にイメージが構築されている場合は、このステップをスキップします。
+docker build -t ecr-test-20221114 .
+docker build -t ecr-test-20221114 .
+
+構築が完了したら、このリポジトリにイメージをプッシュできるように、イメージにタグを付けます。
+docker tag ecr-test-20221114:latest 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+docker tag ecr-test-20221114:latest 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+
+以下のコマンドを実行して、新しく作成した AWS リポジトリにこのイメージをプッシュします:
+docker push 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+docker push 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+
+20221114
+上記をaws cloudShellで実行してたからダメなのかも。
+PCにインストール済のPowerShellでやってみる
+結果
+Get-ECRLoginCommand : 用語 'Get-ECRLoginCommand' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログ
+ラムの名前として認識されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを
+確認してから、再試行してください。
+発生場所 行:1 文字:2
++ (Get-ECRLoginCommand).Password | docker login --username AWS --passwo ...
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-ECRLoginCommand:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+    
+20221114
+CLIはaws CloudShellではインストール済だけど
+PowerShellではインストールされてないのでは？以下を実行する
+aws --version 
+⇒結果（PowerShell）
+aws : 用語 'aws' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されません。名前が正しく記述されていることを確認
+し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行してください。
+⇒結果（CloudShell）
+aws-cli/2.8.10 Python/3.9.11 Linux/4.14.294-220.533.amzn2.x86_64 exec-env/CloudShell exe/x86_64.amzn.2 prompt/off
+
+PowershellでCLI使えないのでインストールしてみる
+⇒以下の手順でやってみる
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html
+インストールする権限がないらしい。。。またかよ。。。
+
+20221114
+gitレポジトリをクローンしてみたが成功
+$ ls
+上記でクローンした一覧が表示される
+gcpみたくGUIで目視確認はできないのか？GCPはOpen Editorでブラウザからクラウドリソースに直接アクセスできた。
+awsではその機能はないみたい。。。
+
+20221114
+コンテナのビルドもできない。
+諦めずに試行し続けるしかない。
+
+
+
+
+
+
+
+
+
