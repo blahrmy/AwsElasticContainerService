@@ -13,6 +13,7 @@ PowerShell 向けの AWS Tools を使用する
 上段：Windows用
 下段：Mac用
 (Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
+(Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin アカウントID.dkr.ecr.ap-northeast-1.amazonaws.com
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
 
 以下のコマンドを使用して、Docker イメージを構築します。一から Docker ファイルを構築する方法については、「こちらをクリック 」の手順を参照してください。
@@ -66,6 +67,20 @@ awsではその機能はないみたい。。。
 20221114
 コンテナのビルドもできない。
 諦めずに試行し続けるしかない。
+
+20221115
+ターミナルでdockerで始まるコードは実行できない
+dockerを未インストールだからと思う。
+gcloud buildみたいにawsなんとかってコードはないのか？
+⇒どうやらaws CLIでやるしかないらしい。。。これ以上は会社PCではできないね。
+
+20221115
+今度はaws cloudShellが使えない。。。何がどうなってるのか。。。
+リージョンを東京にしたら改善した。オハイオではダメなのか？
+
+20221115
+aws cliをメモリ上でインストールする方法はないのか？
+それでダメだったら、会社PCの限界なので辞める。時間の無駄
 
 
 
