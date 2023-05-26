@@ -100,3 +100,13 @@ sagemakerでターミナルも使えなかったっけ？
 github push token
 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
 
+https://atmarkit.itmedia.co.jp/ait/articles/1812/10/news009.html
+機械学習でコンテナは必要か？
+⇒必須ではないが、環境作りでラク（本来のモデル精度向上に時間を割けるようになる）
+
+20230526
+jupiternotebookはクローンできないから諦めて、studio使ってクローンすることにした。
+ただ、studioにはすでにabaloneのフォルダ（EFS）があって、それとは分けたい、どうしたらいい？
+⇒notebookでもクローンできた！jupiterLabの左側タブを全部閉じるとLauncherタブが出てくるので、そこにターミナルがある
+　（open git repository in terminalとは違うから注意） 
+
