@@ -97,8 +97,6 @@ sagemakerでターミナルも使えなかったっけ？
 コンテナの主作業って、gitからクローンだから、ノートブック作業はほとんどない。。。
 クローンはターミナルで実行。sagamekrでターミナルを使うには、studioを使う。
 それなら部会と何も変わらない。
-github push token
-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
 
 https://atmarkit.itmedia.co.jp/ait/articles/1812/10/news009.html
 機械学習でコンテナは必要か？
@@ -107,8 +105,15 @@ https://atmarkit.itmedia.co.jp/ait/articles/1812/10/news009.html
 20230526
 jupiternotebookはクローンできないから諦めて、studio使ってクローンすることにした。
 ただ、studioにはすでにabaloneのフォルダ（EFS）があって、それとは分けたい、どうしたらいい？
-⇒notebookでもクローンできた！jupiterLabの左側タブを全部閉じるとLauncherタブが出てくるので、そこにターミナルがある
+⇒notebookでもクローンできた！jupiterLabの右側タブを全部閉じるとLauncherタブが出てくるので、そこにターミナルがある
 　（open git repository in terminalとは違うから注意） 
 
 20230601
+github token
 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
+
+コンテナ構築ってgithubでコードって感じじゃなくて
+コンソールで操作ってのがメインの気がする
+まあ、目標を決めたらやり抜くのがプログラマの心得だから、とにかくやるか
+
+https://github.com/uma-arai/sbcntr-backend.git
