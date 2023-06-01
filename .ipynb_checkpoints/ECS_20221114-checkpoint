@@ -1,0 +1,102 @@
+20221114
+awsチュートリアルでコンテナのビルドを試してみる
+https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/userguide/create-container-image.html
+gcpでのコンテナのビルドの感覚があるうちにコンテナの知見を確立しておく
+後で忙しい時にコンテナをビルドする時に振返れるのが目的
+
+20221114
+ECRコンソールで作成したレポジトリ
+099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114
+
+認証トークンを取得し、レジストリに対して Docker クライアントを認証します。
+PowerShell 向けの AWS Tools を使用する
+上段：Windows用
+下段：Mac用
+(Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
+(Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin アカウントID.dkr.ecr.ap-northeast-1.amazonaws.com
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 099320749680.dkr.ecr.us-east-2.amazonaws.com
+
+以下のコマンドを使用して、Docker イメージを構築します。一から Docker ファイルを構築する方法については、「こちらをクリック 」の手順を参照してください。
+既にイメージが構築されている場合は、このステップをスキップします。
+docker build -t ecr-test-20221114 .
+docker build -t ecr-test-20221114 .
+
+構築が完了したら、このリポジトリにイメージをプッシュできるように、イメージにタグを付けます。
+docker tag ecr-test-20221114:latest 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+docker tag ecr-test-20221114:latest 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+
+以下のコマンドを実行して、新しく作成した AWS リポジトリにこのイメージをプッシュします:
+docker push 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+docker push 099320749680.dkr.ecr.us-east-2.amazonaws.com/ecr-test-20221114:latest
+
+20221114
+上記をaws cloudShellで実行してたからダメなのかも。
+PCにインストール済のPowerShellでやってみる
+結果
+Get-ECRLoginCommand : 用語 'Get-ECRLoginCommand' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログ
+ラムの名前として認識されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを
+確認してから、再試行してください。
+発生場所 行:1 文字:2
++ (Get-ECRLoginCommand).Password | docker login --username AWS --passwo ...
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-ECRLoginCommand:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+    
+20221114
+CLIはaws CloudShellではインストール済だけど
+PowerShellではインストールされてないのでは？以下を実行する
+aws --version 
+⇒結果（PowerShell）
+aws : 用語 'aws' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラムの名前として認識されません。名前が正しく記述されていることを確認
+し、パスが含まれている場合はそのパスが正しいことを確認してから、再試行してください。
+⇒結果（CloudShell）
+aws-cli/2.8.10 Python/3.9.11 Linux/4.14.294-220.533.amzn2.x86_64 exec-env/CloudShell exe/x86_64.amzn.2 prompt/off
+
+PowershellでCLI使えないのでインストールしてみる
+⇒以下の手順でやってみる
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html
+インストールする権限がないらしい。。。またかよ。。。
+
+20221114
+gitレポジトリをクローンしてみたが成功
+$ ls
+上記でクローンした一覧が表示される
+gcpみたくGUIで目視確認はできないのか？GCPはOpen Editorでブラウザからクラウドリソースに直接アクセスできた。
+awsではその機能はないみたい。。。
+
+20221114
+コンテナのビルドもできない。
+諦めずに試行し続けるしかない。
+
+20221115
+ターミナルでdockerで始まるコードは実行できない
+dockerを未インストールだからと思う。
+gcloud buildみたいにawsなんとかってコードはないのか？
+⇒どうやらaws CLIでやるしかないらしい。。。これ以上は会社PCではできないね。
+
+20221115
+今度はaws cloudShellが使えない。。。何がどうなってるのか。。。
+リージョンを東京にしたら改善した。オハイオではダメなのか？
+
+20221115
+aws cliをメモリ上でインストールする方法はないのか？
+それでダメだったら、会社PCの限界なので辞める。時間の無駄
+
+20230524
+部会でsagemakerもやったし、CloundPractitioner合格したし、次は何をやるかと思い
+k8sじゃね。と直感で思い（できたらカッコいい）やることにした。
+過去にも自分はやってたので、それを活用することにした。
+1年前の自分はいきなりCLIやろうとしてたのか。。。無知は恐ろしい。。。
+教材は「AWS コンテナ設計・構築・本格入門」
+
+20230524
+クローンするのってshellでやるよね？ノートブックだとできなくない？
+sagemakerでターミナルも使えなかったっけ？
+
+20230525
+コンテナの主作業って、gitからクローンだから、ノートブック作業はほとんどない。。。
+クローンはターミナルで実行。sagamekrでターミナルを使うには、studioを使う。
+それなら部会と何も変わらない。
+github push token
+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
+
