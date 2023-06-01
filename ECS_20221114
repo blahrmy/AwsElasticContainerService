@@ -109,11 +109,11 @@ jupiternotebookはクローンできないから諦めて、studio使ってク�
 　（open git repository in terminalとは違うから注意） 
 
 20230601
-github token
-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
-
 コンテナ構築ってgithubでコードって感じじゃなくて
 コンソールで操作ってのがメインの気がする
 まあ、目標を決めたらやり抜くのがプログラマの心得だから、とにかくやるか
 
-https://github.com/uma-arai/sbcntr-backend.git
+push時にトークンを毎回発行しないとエラーになる。なぜだ？
+
+github token
+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
