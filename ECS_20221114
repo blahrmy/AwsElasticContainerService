@@ -105,7 +105,8 @@ https://atmarkit.itmedia.co.jp/ait/articles/1812/10/news009.html
 20230526
 jupiternotebookはクローンできないから諦めて、studio使ってクローンすることにした。
 ただ、studioにはすでにabaloneのフォルダ（EFS）があって、それとは分けたい、どうしたらいい？
-⇒notebookでもクローンできた！jupiterLabの右側タブを全部閉じるとLauncherタブが出てくるので、そこにターミナルがある
+⇒notebookでもクローンできた！（studio使わなくてよくなった）
+　jupiterLabの右側タブを全部閉じるとLauncherタブが出てくるので、そこにターミナルがある
 　（open git repository in terminalとは違うから注意） 
 
 20230601
@@ -117,3 +118,7 @@ push時にトークンを毎回発行しないとエラーになる。なぜだ�
 
 github token
 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
+
+20230602
+awsクーポンが$50余ってて、2024年までの消費期限だからコンテナ構築してみる
+
